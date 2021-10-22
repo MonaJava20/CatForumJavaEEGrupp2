@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Home page</title>
 </head>
 <body>
   <h1>Welcome to Home page!</h1>
+    <img th:src="@{'image/OIP.jpg'}">
+    <p>Click <a th:href="@{/login}">here</a> to login</p>
+
+    <p>Chatten</p>
 </body>
 </html>
