@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ny login</title>
+</head>
+<body>
+<form th:action="@{/create}" method="post">
+    <h3>Skapa konto</h3>
+    <div>
+        <label>
+            Username: <input type="text" name="username" placeholder="Användarnamn"/>
+        </label>
+    </div>
+    <div>
+        <label>
+            Password: <input type="password" name="password" placeholder="Lösenord"/>
+        </label>
+    </div>
+    <div>
+        <label>
+            Nickname: <input type="text" name="nickname" placeholder="Nickname"/>
+        </label>
+    </div>
+    <div>
+        <label>
+            E-mail: <input type="email" name="email" placeholder="katten@hotmail.se"/>
+        </label>
+    </div>
+    <div><p>Om mig: (Max 300 tecken)</p>
+        <textarea datatype="description" name="description" placeholder="Här kan du beskriva dina kattintressen och dyl." maxlength="300" rows="5" cols="30">
+
+        </textarea>
+    </div>
+
+    <div>
+        <input type="submit" value="Skapa konto"/>
+    </div>
+
+</form>
+</body>
+</html>
