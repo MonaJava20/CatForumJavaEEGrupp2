@@ -20,13 +20,13 @@ public class CatforumApplication implements CommandLineRunner {
 	@Autowired
 	private AccountRepository accountRepository;
 
-
+	
 	@Override
 	public void run(String... args) throws Exception {
 
 		//Sparar account
-		accountRepository.save(new Account("Joel", "KattJulle", "joel@katten.se", "Jag heter Joel, och jag gillar Katter och långa promenader. Gärna samtidigt."));
-		accountRepository.save(new Account("Katarina", "Kattis", "kattis@katten.se", "Jag heter Kattis, och jag har fyra (4) katter och en uggla"));
+		accountRepository.save(new Account("Joel", "KattJulle", "joel@katten.se", "abc123", "Jag heter Joel, och jag gillar Katter och långa promenader. Gärna samtidigt."));
+		accountRepository.save(new Account("Katarina", "Kattis", "kattis@katten.se", "abc123","Jag heter Kattis, och jag har fyra (4) katter och en uggla"));
 
 		//Hämta alla konton
 

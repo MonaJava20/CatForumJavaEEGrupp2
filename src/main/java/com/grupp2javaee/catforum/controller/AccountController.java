@@ -14,7 +14,6 @@ public class AccountController {
     AccountRepository accountRepo;
 
 
-
     /*public String getAllAccounts(Model model) {
         model.addAttribute("accounts", accountRepo.findAll());
         return "account.html"; //Eller ev bara "account".
