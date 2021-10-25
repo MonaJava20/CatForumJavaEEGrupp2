@@ -20,6 +20,6 @@ public class Account {
     private String nickName;
     private String email;
     private String description; //Om tid finns ändra så att description är begränsad i antalet tecken.
-    //Ev bild om tid finns.
+    //Ev bild om tid finns. ..
 
 }
