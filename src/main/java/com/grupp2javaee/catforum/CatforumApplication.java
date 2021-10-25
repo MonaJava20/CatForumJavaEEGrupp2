@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @SpringBootApplication
-public class CatforumApplication implements CommandLineRunner {
+public class CatforumApplication /*implements CommandLineRunner*/ {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CatforumApplication.class, args);
@@ -20,7 +20,7 @@ public class CatforumApplication implements CommandLineRunner {
 	@Autowired
 	private AccountRepository accountRepository;
 
-
+/*
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -34,6 +34,5 @@ public class CatforumApplication implements CommandLineRunner {
 		System.out.println("(\n============ Lista av alla kattkompisar ============");
 		System.out.println(accountList);
 
-	}
-
+	}*/
 }
