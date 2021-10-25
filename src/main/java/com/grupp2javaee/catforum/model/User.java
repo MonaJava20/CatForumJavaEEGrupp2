@@ -6,34 +6,33 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
-//@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
-@ToString
-@Document(collection = "accounts")
-public class Account {
-
+@Document(collection = "users")
+public class User {
     @Id
-    private String id; //long istället för int för att öka säkerheten.
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
-
+    private String id;
+    @Indexed(
+            unique = true,
+            direction = IndexDirection.DESCENDING,
+            dropDups = true
+    )
     private String name;
     private String nickName;
     private String email;
     private String password;
-    private String description; //Om tid finns ändra så att description är begränsad i antalet tecken.
+    private String description;
 
     @DBRef
     private Set<Role> roles;
 
-    public Account(String name, String nickName, String email, String password, String description) {
+    public User() {
     }
-    //Ev bild om tid finns.
+
+
+    public User(String name, String nickName, String email, String password, String description) {
+    }
 
     public String getId() {
         return id;

@@ -1,28 +1,86 @@
 package com.grupp2javaee.catforum.controller;
 
-import com.grupp2javaee.catforum.model.Account;
-import com.grupp2javaee.catforum.model.AccountRepository;
+import com.grupp2javaee.catforum.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-
     @Autowired
-    AccountRepository accountRepo;
+    private CustomUserDetailsService userService;
 
+    public AccountController() {
+    }
 
-    /*public String getAllAccounts(Model model) {
-        model.addAttribute("accounts", accountRepo.findAll());
-        return "account.html"; //Eller ev bara "account".
-    }*/
+    public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
 
-    /*@RequestMapping("/getAccounts")
-    public String getAccounts(Model model, Account account) {
-        model.addAttribute("account", account);
-        return "viewAccounts.html";
-    }*/
+    @RequestMapping(
+            value = {"/signup"},
+            method = {RequestMethod.GET}
+    )
+    public ModelAndView signup() {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("signup");
+        return modelAndView;
+    }
 
+    @RequestMapping(
+            value = {"/signup"},
+            method = {RequestMethod.POST}
+    )
+    public ModelAndView createNewUser(User user, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        User userExists = this.userService.findUserByEmail(user.getEmail());
+        if (userExists != null) {
+            bindingResult.rejectValue("email", "error.user", "There is already a user registered with the username provided");
+        }
+
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("signup");
+        } else {
+            this.userService.saveUser(user);
+            modelAndView.addObject("successMessage", "User has been registered successfully");
+            modelAndView.addObject("user", new User());
+            modelAndView.setViewName("login");
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping(
+            value = {"/dashboard"},
+            method = {RequestMethod.GET}
+    )
+    public ModelAndView dashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = this.userService.findUserByEmail(auth.getName());
+        modelAndView.addObject("currentUser", user);
+        modelAndView.addObject("fullName", "Welcome " + user.getName());
+        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
+        modelAndView.setViewName("dashboard");
+        return modelAndView;
+    }
+
+    @RequestMapping(
+            value = {"/", "/home"},
+            method = {RequestMethod.GET}
+    )
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
+    }
 }
