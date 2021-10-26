@@ -7,12 +7,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @ToString
-@Document(collection = "accounts")
-public class Account {
+@Document(collection = "users")
+public class User {
 
     @Id
     private String id; //long istället för int för att öka säkerheten.
@@ -21,7 +21,7 @@ public class Account {
     private String email;
     private String description; //Om tid finns ändra så att description är begränsad i antalet tecken.
 
-    public Account(String name, String nickName, String email, String description) {
+    public User(String name, String nickName, String email, String description) {
     }
     //Ev bild om tid finns.
 

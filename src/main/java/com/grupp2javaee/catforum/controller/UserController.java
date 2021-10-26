@@ -1,17 +1,14 @@
 package com.grupp2javaee.catforum.controller;
 
-import com.grupp2javaee.catforum.model.Account;
-import com.grupp2javaee.catforum.model.AccountRepository;
+import com.grupp2javaee.catforum.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AccountController {
+public class UserController {
 
     @Autowired
-    AccountRepository accountRepo;
+    UserRepository userRepo;
 
 
 
