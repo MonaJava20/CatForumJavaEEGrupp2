@@ -1,11 +1,14 @@
 package com.grupp2javaee.catforum.model;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 public interface AccountRepository extends MongoRepository<Account, String> {
 
-    //Om man vill kan man göra egna metoder här.
-    //Annars får man med mycket under huven.
+    //Här kan vi skapa några egna metoder
+    public List<Account> findByName(String name);
+    public Account findByEmail(String email);
+    public Account findByNickName(String nickName);
 
 }

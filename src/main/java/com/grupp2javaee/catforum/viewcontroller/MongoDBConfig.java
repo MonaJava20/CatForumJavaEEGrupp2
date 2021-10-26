@@ -1,5 +1,6 @@
 package com.grupp2javaee.catforum.viewcontroller;
 
+/*
 import com.mongodb.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
@@ -25,4 +26,4 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
                     settings.hosts(Collections.singletonList(new ServerAddress("localhost", 27017)));
                 });
     }
-}
+}*/
