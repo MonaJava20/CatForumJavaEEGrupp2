@@ -16,6 +16,13 @@ public class AccountController {
     @Autowired
     AccountRepository accountRepo;
 
+    //Metoden login returnerar ett objekt av ModelAndView
+    /*public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }*/
+
     //GET create-formuläret.
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView signup() {
@@ -46,6 +53,8 @@ public class AccountController {
         }
         return modelAndView;
     }
+
+    //@RequestMapping(value="/account", method = RequestMethod.GET)
 
 
 
