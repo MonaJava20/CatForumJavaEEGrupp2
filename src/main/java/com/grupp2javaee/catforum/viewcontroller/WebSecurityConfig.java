@@ -17,6 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
+                .antMatchers("/create").permitAll()
                 .antMatchers("/forum").hasRole("USER")
                 .antMatchers("/account").hasRole("USER")
                 //.antMatchers("/admin").hasRole("ADMIN")
@@ -25,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .logoutSuccessUrl("/home");
     }
 
     @Bean
@@ -39,13 +41,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .password("password")
                         .roles("USER")
                         .build();
-
-        /*UserDetails admin =
-                User.withDefaultPasswordEncoder()
-                        .username("admin")
-                        .password("password")
-                        .roles("USER","ADMIN")
-                        .build();*/
 
         return new InMemoryUserDetailsManager(user);
 
