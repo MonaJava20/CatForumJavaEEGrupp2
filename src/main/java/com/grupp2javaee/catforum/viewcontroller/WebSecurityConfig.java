@@ -3,6 +3,7 @@ package com.grupp2javaee.catforum.viewcontroller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -30,7 +31,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/home");
     }
 
-    /*@Bean
+    //Denna ignorerar security för dessa mappar
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+        .ignoring()
+        .antMatchers("/resources/**", "/templates/**", "/static/**", "/css/**", "/js/**", "/image/**","/vendor/**","/fonts/**");
+    }
+
+    //Debug user :)
+    @Bean
     @Override
     public UserDetailsService userDetailsService() {
 
@@ -44,6 +54,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
 
-    }*/
-
+    }
 }

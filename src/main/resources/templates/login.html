@@ -7,14 +7,20 @@
 <body>
 <form th:action="@{/login}" method="post">
     <h3>Logga in till vår kattchatt</h3>
+    <div th:if="${param.error}">
+        Invalid email and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
     <div>
         <label>
-            Username: <input type="text" name="nickName" placeholder="Nickname"/>
+            Username: <input type="text" name="username" id="inputUsername" placeholder="Användarnamn"/>
         </label>
     </div>
     <div>
         <label>
-            Password: <input type="password" name="password" placeholder="Lösenord"/>
+            Password: <input type="password" name="password" id="inputPassword" placeholder="Lösenord"/>
         </label>
     </div>
     <div>

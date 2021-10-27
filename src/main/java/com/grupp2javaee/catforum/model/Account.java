@@ -1,7 +1,6 @@
 package com.grupp2javaee.catforum.model;
 
 
-import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,18 +14,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Account {
 
     @Id
-    private String id; //long istället för int för att öka säkerheten.
+    private String id; //Denna behöver tydligen vara en String
     private String name;
-    private String nickName;
+    private String username;
     private String email;
     private String password;
     private String description; //Om tid finns ändra så att description är begränsad i antalet tecken.
 
     public Account() {}
 
-    public Account(String name, String nickName, String email, String password, String description) {
+    public Account(String name, String username, String email, String password, String description) {
         this.name = name;
-        this.nickName = nickName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.description = description;
@@ -39,9 +38,9 @@ public class Account {
         return "Account{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", användarnam='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", lösenord='" + password + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
@@ -62,12 +61,12 @@ public class Account {
         this.name = name;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
