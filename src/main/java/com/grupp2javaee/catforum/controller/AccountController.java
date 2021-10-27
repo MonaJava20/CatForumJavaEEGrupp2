@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +35,44 @@ public class AccountController {
             roles));
     }*/
 
+    //GET mina uppgifter/account  tilll mypage.
 
+
+
+    public Account getAccountByUserName(String userName){
+        return accountRepo.findByUsername(userName);
+    }
+
+    public void deleteAccountByUserName(String name){
+         accountRepo.deleteByName(name);
+    }
+
+    @RequestMapping(value="/delete/{name}", method=RequestMethod.DELETE)
+    public void deleteAccount(@PathVariable String name) {
+        accountRepo.deleteByName("Katarina");
+
+    }
+
+    /*@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public ModelAndView deleteAccount() {
+        ModelAndView modelAndView = new ModelAndView();
+        accountRepo.deleteAll();
+        //deleteAccountByUserName("Katarina");
+        //modelAndView.("account", account);
+        modelAndView.setViewName("delete");
+        System.out.println("Kolla i databasen så att den är borta");
+        return modelAndView;
+    }*/
+
+    @RequestMapping(value = "/mypage", method = RequestMethod.GET)
+    public ModelAndView viewAccount() {
+        ModelAndView modelAndView = new ModelAndView();
+        Account account = getAccountByUserName("Kattis");
+        //modelAndView.("account", account);
+        modelAndView.setViewName("mypage");
+        System.out.println(account);
+        return modelAndView;
+    }
 
     //GET create-formuläret.
     @RequestMapping(value = "/create", method = RequestMethod.GET)

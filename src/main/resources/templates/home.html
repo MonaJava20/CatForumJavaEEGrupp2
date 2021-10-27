@@ -7,10 +7,16 @@
 <body>
   <h1>Welcome to Home page!</h1>
 
-  <img th:src="@{'image/OIP.jpg'}">
-    <p>Klicka <a th:href="@{/login}">här</a> för att logga in!</p>
-    <p><a th:href="@{/create}">Skapa konto!</a></p>
+  <!-- -->
 
-    <p>Chatten</p>
+  <img th:src="@{'image/OIP.jpg'}">
+  <p><a th:href="@{/create}">Klicka här för att göra inlägg i kattforum</a></p>
+   <p>Klicka  <a th:href="@{/login}">här</a> om du är admin, logga in</p>
+  <p><a th:href="@{/delete}">Klicka för att ta bort ditt konto</a></p>
+
+  <p><a th:href="@{/create}">Skapa konto!</a>  </p>
+  <p><a th:href="@{/mypage}">Till mina sidor</a></p>
+
+  <p>Chatten</p>
 </body>
 </html>
