@@ -43,9 +43,9 @@ public class CatforumApplication implements CommandLineRunner {
 			System.out.println(account);
 		}
 
-		System.out.println("Customers found with findByNickName('Kattis'):");
+		System.out.println("Customers found with findByUsername('Kattis'):");
 		System.out.println("--------------------------------");
-		System.out.println(accountRepository.findByNickName("Kattis"));
+		System.out.println(accountRepository.findByUsername("Kattis"));
 
 	}
 }
