@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/home");
     }
 
-    @Bean
+    /*@Bean
     @Override
     public UserDetailsService userDetailsService() {
 
@@ -44,5 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
 
-    }
+    }*/
+
 }

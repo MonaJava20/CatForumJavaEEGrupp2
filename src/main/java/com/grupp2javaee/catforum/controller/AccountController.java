@@ -16,12 +16,35 @@ public class AccountController {
     @Autowired
     AccountRepository accountRepo;
 
+   /* @RequestMapping(value="/account", method = RequestMethod.GET)
+    public Account getMyAccount(String nickName) {
+        return accountRepo.findByNickName(nickName);
+    }*/
+
+
+
+    //1) Vi behöver kunna logga in och hamna på account.html:
+    //   Get login
+    //   då ska Mina sidor
+
+    //@RequestMapping(value="/account", method = RequestMethod.GET)
+    /*public String getAllAccounts(Model model) {
+        model.addAttribute("accounts", accountRepo.findAll());
+        return "account.html"; //Eller ev bara "account".
+    }*/
+
+    /*@RequestMapping("/getAccounts")
+    public String getAccounts(Model model, Account account) {
+        model.addAttribute("account", account);
+        return "viewAccounts.html";
+    }*/
+
     //Metoden login returnerar ett objekt av ModelAndView
-    /*public ModelAndView login() {
+    public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
-    }*/
+    }
 
     //GET create-formuläret.
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -53,20 +76,5 @@ public class AccountController {
         }
         return modelAndView;
     }
-
-    //@RequestMapping(value="/account", method = RequestMethod.GET)
-
-
-
-    /*public String getAllAccounts(Model model) {
-        model.addAttribute("accounts", accountRepo.findAll());
-        return "account.html"; //Eller ev bara "account".
-    }*/
-
-    /*@RequestMapping("/getAccounts")
-    public String getAccounts(Model model, Account account) {
-        model.addAttribute("account", account);
-        return "viewAccounts.html";
-    }*/
 
 }
