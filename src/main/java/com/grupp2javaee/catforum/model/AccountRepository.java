@@ -9,6 +9,6 @@ public interface AccountRepository extends MongoRepository<Account, String> {
     //Här kan vi skapa några egna metoder
     public List<Account> findByName(String name);
     public Account findByEmail(String email);
-    public Account findByNickName(String nickName);
+    public Account findByUsername(String username);
 
 }
