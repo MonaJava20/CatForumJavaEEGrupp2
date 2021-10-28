@@ -62,17 +62,44 @@ public class AccountController {
         accountRepo.deleteByName("Katarina");
     }*/
 
-    //GET delete-vy
+    //GET UPDATE-vy
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public ModelAndView update() {
+        ModelAndView modelAndView = new ModelAndView();
+        Account account = new Account(); //Behövs denna och rad nedan?
+        modelAndView.addObject("account", account);
+        modelAndView.setViewName("update");
+        return updateAccount();
+        //return modelAndView;
+    }
+
+    //UPDATE
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ModelAndView updateAccount() {
+        ModelAndView modelAndView = new ModelAndView();
+        Account account = accountRepo.findByUsername("KattJulle");
+        System.out.println("Har vi hittat KattJulle: " + account);
+        account.setUsername("KattDrulle");
+        //Spara i databas accountRepo
+        accountRepo.save(account);
+        //accountRepo.updateUsername("KattJulle");
+        //account.setUsername("KattDrulle");
+        modelAndView.setViewName("update");
+        System.out.println("Kolla i databasen så att namnet är uppdaterat");
+        return modelAndView;
+    }
+
+    //GET DELETE-vy
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public ModelAndView delete() {
         ModelAndView modelAndView = new ModelAndView();
         Account account = new Account();
         modelAndView.addObject("account", account);
         modelAndView.setViewName("delete");
-        return deleteAccount();
+        return deleteAccount(); //deleteAccount() = ett objekt av ModelView
     }
 
-    //Testar att skriva om lite i Monas och Johannas metod
+    //DELETE
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ModelAndView deleteAccount() {
         ModelAndView modelAndView = new ModelAndView();
@@ -86,6 +113,7 @@ public class AccountController {
     }
 
     //Se ett konto i konsollen
+    //GET
     @RequestMapping(value = "/mypage", method = RequestMethod.GET)
     public ModelAndView viewAccount() {
         ModelAndView modelAndView = new ModelAndView();
