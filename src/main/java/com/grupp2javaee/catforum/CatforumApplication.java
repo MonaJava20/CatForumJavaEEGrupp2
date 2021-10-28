@@ -28,9 +28,9 @@ public class CatforumApplication implements CommandLineRunner {
 		accountRepository.deleteAll();
 
 		//Sparar account
-		accountRepository.save(new Account("Joel", "KattJulle", "joel@katten.se", "password", "Jag heter Joel, och jag gillar Katter och långa promenader. Gärna samtidigt."));
 		accountRepository.save(new Account("Katarina", "Kattis", "kattis@katten.se", "password", "Jag heter Kattis, och jag har fyra (4) katter och en uggla"));
-		accountRepository.save(new Account("Joel", "HundJulle", "joel@hunden.se", "password", "Jag heter Joel, men jag gillar Hundar och korta promenader. Aldrig samtidigt."));
+		accountRepository.save(new Account("Joel", "KattJulle", "joel@katten.se", "password", "Jag heter Joel, gillar Katter och långa promenader. Gärna samtidigt."));
+		accountRepository.save(new Account("Joel", "HundJulle", "joel@hunden.se", "password", "Jag heter Joel, gillar Hundar och korta promenader. Aldrig samtidigt."));
 
 		//Hämtar alla konton
 		List<Account> accountList = accountRepository.findAll();
