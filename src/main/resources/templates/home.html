@@ -13,13 +13,19 @@
   <img th:src="@{'/images/cathomepage3.jpg'}"
        style="display: block; margin-left: auto; margin-right: auto;">
   <div style="text-align: center;">
-      <button type="button" style="display: block; margin-left: auto; margin-right: auto; background-color: #e7e7e7 color=black; text-decoration: none;">
-          <a th:href="@{/create}">Inlägg i kattforum</a></button>
-   <button type="button" style="background-color: #e7e7e7 color=black; text-decoration: none;"><a th:href="@{/login}">Login admin</a></button>
-  <p><a th:href="@{/delete}">Klicka för att ta bort ditt konto</a></p>
-  <p><a th:href="@{/create}">Skapa konto!</a>  </p>
-  <p><a th:href="@{/mypage}">Till mina sidor</a></p>
-  <p><a th:href="@{/update}">Uppdatera ditt namn här</a></p>
+      <button type="button" style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px; background-color: #cac4d8; color=black; text-decoration: none;">
+          <a th:href="@{/forum}">Inlägg i kattforum</a></button></br>
+   <button type="button" style="background-color: #cac4d8; color=black; text-decoration: none;">
+       <a th:href="@{/login}">Logga in</a></button>
+      <button type="button" style="background-color: #cac4d8; color=black; text-decoration: none;">
+      <a th:href="@{/create}">Skapa konto</a></button>
+      <button type="button" style="background-color: #cac4d8; color=black; text-decoration: none;">
+      <a th:href="@{/mypage}">Mina sidor</a></button>
+      <h6 style="margin-top: 20px";>Kontohantering:</h6>
+  <button type="button" style="display: block; margin-left: auto; margin-right: auto; background-color: #cac4d8; color=black; text-decoration: none;">
+      <a th:href="@{/delete}">Radera konto</a></button><br>
+  <button type="button" style="display: block; margin-left: auto; margin-right: auto; background-color: #cac4d8; color=black; text-decoration: none;">
+      <a th:href="@{/update}">Uppdatera konto</a></button>
   </div>
 
 </div>
