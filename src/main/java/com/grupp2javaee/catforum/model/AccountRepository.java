@@ -10,7 +10,8 @@ public interface AccountRepository extends MongoRepository<Account, String> {
     public List<Account> findByName(String name);
     public Account findByEmail(String email);
     public Account findByUsername(String username);
-    public Account deleteByName(String name);
     public Account deleteByUsername(String username);
+    //public Account updateByUsername(String username); //Kan man inte göra
+    //public Account updateUsername(String username); //Kan man inte göra
 
 }

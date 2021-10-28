@@ -18,9 +18,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .antMatchers("/create").permitAll()
-                .antMatchers("/mypage").permitAll()
-                .antMatchers("/delete").permitAll()
+                .antMatchers("/create").permitAll() //CREATE
+                .antMatchers("/mypage").permitAll() //GET
+                .antMatchers("/update").hasRole("USER") //UPDATE
+                .antMatchers("/delete").hasRole("USER") //DELETE
                 .antMatchers("/delete/{id}").hasRole("ADMIN")
                 .antMatchers("/forum").hasRole("USER")
                 .antMatchers("/account").hasRole("USER")
@@ -48,21 +49,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
 
         //Detta är ett hårdkodat test-konto.
-        /*UserDetails user =
+        UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
                         .roles("USER")
                         .build();
 
-        return new InMemoryUserDetailsManager(user);*/
+        return new InMemoryUserDetailsManager(user);
 
-        UserDetails admin =
+        /*UserDetails admin =
                 User.withDefaultPasswordEncoder()
                         .username("admin")
                         .password("password")
                         .roles("USER","ADMIN")
                         .build();
-        return new InMemoryUserDetailsManager(admin);
+        return new InMemoryUserDetailsManager(admin);*/
     }
 }
