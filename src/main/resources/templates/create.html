@@ -2,11 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Ny login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Skapa konto</title>
 </head>
 <body>
-<form th:action="@{/create}" method="post">
-    <h3>Skapa konto</h3>
+<form th:action="@{/create}" method="post"
+    style="max-width: 350px; margin: 0 auto;">
+    <div class="border border-secondary p-3 rounded">
+        <img th:src="@{'/images/catcreatepage.jpg'}"
+             style="max-width:300px; display: block; margin-left: auto; margin-right: auto;">
+        <h1>Bli en i kattgänget!</h1>
     <div>
         <label>
             Name: <input type="text" name="name" placeholder="Användarnamn"/>
@@ -36,7 +43,9 @@
     <div>
         <input type="submit" value="Skapa konto"/>
     </div>
-
+    </div>
 </form>
+
+
 </body>
 </html>
