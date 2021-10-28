@@ -1,13 +1,12 @@
 package com.grupp2javaee.catforum.controller;
 
 import com.grupp2javaee.catforum.model.Account;
-import com.grupp2javaee.catforum.model.AccountRepository;
+import com.grupp2javaee.catforum.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AccountController {
 
     @Autowired
-    AccountRepository accountRepo;
+    private CustomUserDetailsService userService;
 
     //Metoden login returnerar ett objekt av ModelAndView
     public ModelAndView login() {
@@ -24,17 +23,6 @@ public class AccountController {
         modelAndView.setViewName("login");
         return modelAndView;
     }
-
-    /*
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-        public Account<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));SecurityContextHolder.getContext().setAuthentication(authentication);String jwt = jwtUtils.generateJwtToken(authentication);UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());return ResponseEntity.ok(new JwtResponse(jwt,
-            userDetails.getId(),
-            userDetails.getUsername(),
-            userDetails.getEmail(),
-            roles));
-    }*/
-
-
 
     //GET create-formuläret.
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -50,7 +38,7 @@ public class AccountController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView createNewAccount(Account account, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Account accountExists = accountRepo.findByEmail(account.getEmail());
+        Account accountExists = userService.findUserByEmail(account.getEmail());
         if (accountExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
@@ -59,7 +47,7 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("create");
         } else {
-            accountRepo.save(account);
+            userService.saveAccount(account);
             modelAndView.addObject("successMessage", "Kontot är skapat!");
             modelAndView.addObject("account", new Account());
             modelAndView.setViewName("login");
@@ -67,22 +55,23 @@ public class AccountController {
         return modelAndView;
     }
 
-    //UPDATE
+    @RequestMapping(value = "/forum", method = RequestMethod.GET)
+    public ModelAndView forum() {
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Account account = userService.findUserByEmail(auth.getName());
+        modelAndView.addObject("currentUser", account);
+        modelAndView.addObject("name", "Welcome " + account.getName());
+        modelAndView.addObject("userMessage", "Content Available Only for Users with a Role");
+        modelAndView.setViewName("forum");
+        return modelAndView;
+    }
 
-
-    //@RequestMapping(value="/account", method = RequestMethod.GET)
-
-
-
-    /*public String getAllAccounts(Model model) {
-        model.addAttribute("accounts", accountRepo.findAll());
-        return "account.html"; //Eller ev bara "account".
-    }*/
-
-    /*@RequestMapping("/getAccounts")
-    public String getAccounts(Model model, Account account) {
-        model.addAttribute("account", account);
-        return "viewAccounts.html";
-    }*/
+    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
+    }
 
 }

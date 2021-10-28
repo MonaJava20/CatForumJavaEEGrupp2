@@ -2,7 +2,12 @@ package com.grupp2javaee.catforum.model;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Set;
 
 //@Getter
 //@Setter
@@ -15,24 +20,29 @@ public class Account {
 
     @Id
     private String id; //Denna behöver tydligen vara en String
+    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true) //Behövs denna?
     private String name;
     private String username;
     private String email;
     private String password;
     private String description; //Om tid finns ändra så att description är begränsad i antalet tecken.
+    @DBRef
+    private Set<Role> roles; //Denna Set-variabel kommer generera access till vårt forum och koppla en role till användaren
 
+    /*
     public Account() {}
 
-    public Account(String name, String username, String email, String password, String description) {
+    public Account(String name, String username, String email, String password, String description, Set<Role> roles) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.description = description;
+        this.roles = roles;
     }
+    */
     //Ev bild om tid finns.
-
-
+    /*
     @Override
     public String toString() {
         return "Account{" +
@@ -42,8 +52,9 @@ public class Account {
                 ", email='" + email + '\'' +
                 ", lösenord='" + password + '\'' +
                 ", description='" + description + '\'' +
+                ", role='" + roles + '\'' +
                 '}';
-    }
+    }*/
 
     public String getId() {
         return id;
@@ -92,4 +103,13 @@ public class Account {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 }

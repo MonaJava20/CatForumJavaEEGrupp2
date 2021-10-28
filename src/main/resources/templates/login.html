@@ -8,7 +8,7 @@
 <form th:action="@{/login}" method="post">
     <h3>Logga in till vår kattchatt</h3>
     <div th:if="${param.error}">
-        Invalid email and password.
+        Invalid username or password.
     </div>
     <div th:if="${param.logout}">
         You have been logged out.
