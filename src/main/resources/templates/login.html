@@ -11,6 +11,8 @@
 <form th:action="@{/login}" method="post"
 style="max-width: 350px; margin: 0 auto;">
     <div class="border border-secondary p-3 rounded">
+        <img th:src="@{'/images/OIP.jpg'}"
+        style="max-width: 300px;">
     <h3>Logga in till vår kattchatt</h3>
     <div th:if="${param.error}">
         Invalid email and password.

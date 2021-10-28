@@ -7,20 +7,20 @@
     <title>Home page</title>
 </head>
 <body>
-<div style="max-width: 350px; margin: 0 auto;">
+<div style="max-width: 600px; margin: 0 auto;">
 <div class="border border-secondary p-3 rounded">
-  <h1>Welcome to Home page!</h1>
-
-  <!-- -->
-
-  <img th:src="@{'/image/OIP.jpg'}">
-  <p><a th:href="@{/create}">Klicka här för att göra inlägg i kattforum</a></p>
+  <h1 style="text-align: center;">Välkommen till kattforum!</h1>
+  <img th:src="@{'/images/cathomepage3.jpg'}"
+       style="display: block; margin-left: auto; margin-right: auto;">
+  <div style="text-align: center;">
+      <button type="button" style="background-color: #e7e7e7 color=black; text-decoration: none;"><a th:href="@{/create}">Inlägg i kattforum</a></button>
    <p>Klicka  <a th:href="@{/login}">här</a> om du är admin, logga in</p>
   <p><a th:href="@{/delete}">Klicka för att ta bort ditt konto</a></p>
 
   <p><a th:href="@{/create}">Skapa konto!</a>  </p>
   <p><a th:href="@{/mypage}">Till mina sidor</a></p>
   <p><a th:href="@{/update}">Uppdatera ditt namn här</a></p>
+  </div>
 
 </div>
 </div>
