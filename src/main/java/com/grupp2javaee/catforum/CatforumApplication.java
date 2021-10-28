@@ -30,9 +30,9 @@ public class CatforumApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		//Detta raderar allt i databasen som gjordes vid den tidigare runnen
-		accountRepository.deleteAll();
-		roleRepository.deleteAll();
+		//Dessa kodrader raderar allt i databasen som gjordes vid den tidigare runnen
+		//accountRepository.deleteAll();
+		//roleRepository.deleteAll();
 
 		//Detta skapar Rollen USER i MongoDB
 		Role userRole = roleRepository.findByRole("USER");
@@ -60,18 +60,18 @@ public class CatforumApplication implements CommandLineRunner {
 		//Hämtar alla konton
 		List<Account> accountList = accountRepository.findAll();
 		System.out.println("(\n============ Lista av alla kattkompisar ============");
-		System.out.println(accountList);
+		System.out.println(accountList.toString());
 
 		//Hämtar unika account
 		System.out.println("Här hittar vi kattkompisen med findByName('Joel'):");
 		System.out.println("--------------------------------");
 		for (Account account : accountRepository.findByName("Joel")) {
-			System.out.println(account);
+			System.out.println(account.toString());
 		}
 
 		System.out.println("Customers found with findByUsername('Kattis'):");
 		System.out.println("--------------------------------");
-		System.out.println(accountRepository.findByUsername("Kattis"));
+		System.out.println(accountRepository.findByUsername("Kattis").toString());
 
 
 	}

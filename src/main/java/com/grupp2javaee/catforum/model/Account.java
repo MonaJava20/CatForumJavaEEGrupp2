@@ -42,19 +42,16 @@ public class Account {
     }
     */
     //Ev bild om tid finns.
-    /*
     @Override
     public String toString() {
-        return "Account{" +
+        return "\nAccount{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", användarnam='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", lösenord='" + password + '\'' +
                 ", description='" + description + '\'' +
-                ", role='" + roles + '\'' +
                 '}';
-    }*/
+    }
 
     public String getId() {
         return id;

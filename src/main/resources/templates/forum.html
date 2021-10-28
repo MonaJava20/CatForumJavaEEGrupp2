@@ -5,7 +5,11 @@
     <title>Catforum</title>
 </head>
 <body>
-<h1 th:inline="text">Hej [[${#httpServletRequest.remoteUser}]]!</h1>
-  <h1>Här är forumet där du kan posta meddelanden.</h1>
+<h1 th:inline="text">Inloggad som: [[${#httpServletRequest.remoteUser}]]!</h1>
+  <h3>Här i forumet kan du posta meddelanden.</h3>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
