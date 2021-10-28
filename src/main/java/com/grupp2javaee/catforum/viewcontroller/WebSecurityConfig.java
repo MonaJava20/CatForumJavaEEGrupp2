@@ -18,9 +18,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/images/**").permitAll()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/create").permitAll() //CREATE
-                .antMatchers("/mypage").permitAll() //GET
+                .antMatchers("/mypage").hasRole("USER") //GET
                 .antMatchers("/update").hasRole("USER") //UPDATE
                 .antMatchers("/delete").hasRole("USER") //DELETE
                 .antMatchers("/delete/{id}").hasRole("ADMIN")
