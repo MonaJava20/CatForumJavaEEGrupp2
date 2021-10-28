@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Mina sidor</title>
 </head>
 <body>
-  <p> Hej Kattkompis här är dina uppgifter</p>
+<div style="max-width: 600px; margin: 0 auto;">
+    <div class="border border-secondary p-3 rounded">
+        <h1 style="text-align: center;">Hej Kattkompis<br /> här är dina uppgifter</h1>
+        <img th:src="@{'/images/catmypage.jpg'}"
+             style="display: block; margin-left: auto; margin-right: auto;">
 <!-- Skriv en get för att hämta alla uppgifter-->
+        </div>
+</div>
 </body>
 </html>
