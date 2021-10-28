@@ -43,33 +43,46 @@ public class AccountController {
         return accountRepo.findByUsername(userName);
     }
 
-    public void deleteAccountByUserName(String name){
+    /*public void deleteAccountByUserName(String name){
          accountRepo.deleteByName(name);
+    }*/
+
+    /*@RequestMapping(value="/delete/{name}", method=RequestMethod.DELETE)
+    public void deleteAccount(@PathVariable String name) {
+        accountRepo.deleteByName("Katarina");
+    }*/
+
+    //GET delete-vy
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView delete() {
+        ModelAndView modelAndView = new ModelAndView();
+        Account account = new Account();
+        modelAndView.addObject("account", account);
+        modelAndView.setViewName("delete");
+        return deleteAccount();
     }
 
-    @RequestMapping(value="/delete/{name}", method=RequestMethod.DELETE)
-    public void deleteAccount(@PathVariable String id) {
-        accountRepo.deleteById(id);
-
-    }
-
-    /*@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    //Testar att skriva om lite i Monas och Johannas metod
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ModelAndView deleteAccount() {
         ModelAndView modelAndView = new ModelAndView();
-        accountRepo.deleteAll();
+        //accountRepo.deleteAll();
         //deleteAccountByUserName("Katarina");
         //modelAndView.("account", account);
+        accountRepo.deleteByUsername("Kattis");
         modelAndView.setViewName("delete");
         System.out.println("Kolla i databasen så att den är borta");
         return modelAndView;
-    }*/
+    }
 
+    //Se ett konto i konsollen
     @RequestMapping(value = "/mypage", method = RequestMethod.GET)
     public ModelAndView viewAccount() {
         ModelAndView modelAndView = new ModelAndView();
         Account account = getAccountByUserName("Kattis");
         //modelAndView.("account", account);
         modelAndView.setViewName("mypage");
+        System.out.println("Mitt konto: ");
         System.out.println(account);
         return modelAndView;
     }
@@ -104,9 +117,6 @@ public class AccountController {
         }
         return modelAndView;
     }
-
-    //UPDATE
-
 
     //@RequestMapping(value="/account", method = RequestMethod.GET)
 
