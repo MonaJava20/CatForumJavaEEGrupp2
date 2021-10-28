@@ -48,8 +48,8 @@ public class AccountController {
     }
 
     @RequestMapping(value="/delete/{name}", method=RequestMethod.DELETE)
-    public void deleteAccount(@PathVariable String name) {
-        accountRepo.deleteByName("Katarina");
+    public void deleteAccount(@PathVariable String id) {
+        accountRepo.deleteById(id);
 
     }
 

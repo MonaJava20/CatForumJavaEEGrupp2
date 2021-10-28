@@ -21,6 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/create").permitAll()
                 .antMatchers("/mypage").permitAll()
                 .antMatchers("/delete").permitAll()
+                .antMatchers("/delete/{id}").hasRole("ADMIN")
                 .antMatchers("/forum").hasRole("USER")
                 .antMatchers("/account").hasRole("USER")
                 //.antMatchers("/admin").hasRole("ADMIN")
@@ -47,14 +48,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
 
         //Detta är ett hårdkodat test-konto.
-        UserDetails user =
+        /*UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
                         .roles("USER")
                         .build();
 
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(user);*/
 
+        UserDetails admin =
+                User.withDefaultPasswordEncoder()
+                        .username("admin")
+                        .password("password")
+                        .roles("USER","ADMIN")
+                        .build();
+        return new InMemoryUserDetailsManager(admin);
     }
 }
