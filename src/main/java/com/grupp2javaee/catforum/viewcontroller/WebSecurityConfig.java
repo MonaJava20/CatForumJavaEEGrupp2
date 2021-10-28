@@ -18,9 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .antMatchers("/create").permitAll()
-                .antMatchers("/mypage").permitAll()
-                .antMatchers("/delete").permitAll()
+                .antMatchers("/create").permitAll() //CREATE
+                .antMatchers("/mypage").permitAll() //GET
+                .antMatchers("/update").hasRole("USER") //UPDATE
+                .antMatchers("/delete").hasRole("USER") //DELETE
+                .antMatchers("/delete/{id}").hasRole("ADMIN")
                 .antMatchers("/forum").hasRole("USER")
                 .antMatchers("/account").hasRole("USER")
                 //.antMatchers("/admin").hasRole("ADMIN")
@@ -56,5 +58,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
 
+        /*UserDetails admin =
+                User.withDefaultPasswordEncoder()
+                        .username("admin")
+                        .password("password")
+                        .roles("USER","ADMIN")
+                        .build();
+        return new InMemoryUserDetailsManager(admin);*/
     }
 }
