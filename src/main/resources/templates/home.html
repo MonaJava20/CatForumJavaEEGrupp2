@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Home page</title>
 </head>
 <body>
+<div style="max-width: 350px; margin: 0 auto;">
+<div class="border border-secondary p-3 rounded">
   <h1>Welcome to Home page!</h1>
 
   <!-- -->
@@ -18,6 +22,8 @@
   <p><a th:href="@{/mypage}">Till mina sidor</a></p>
   <p><a th:href="@{/update}">Uppdatera ditt namn här</a></p>
 
-  <p>Chatten</p>
+</div>
+</div>
+
 </body>
 </html>
